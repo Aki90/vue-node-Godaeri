@@ -1,11 +1,7 @@
-export const state = () => ({
-  name: 'posts',
-});
+export const state = () => ({});
 
-export const mutations = {
-  BYE(state) {
-    state.name = 'goodbye posts';
-  },
-};
+export const getters = {};
+
+export const mutations = {};
 
 export const actions = {};

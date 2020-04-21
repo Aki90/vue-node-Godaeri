@@ -10,6 +10,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src:
+          '//dapi.kakao.com/v2/maps/sdk.js?appkey=479617c5d20a5ea8f0fe8ee20514f575',
+      },
+    ],
   },
   /*
    ** Customize the progress bar color
@@ -27,5 +33,8 @@ module.exports = {
         });
       }
     },
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3031',
   },
 };

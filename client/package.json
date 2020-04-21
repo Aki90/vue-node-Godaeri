@@ -13,9 +13,15 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "axios": "^0.19.2",
     "bootstrap-vue": "^2.6.1",
     "hooper": "^0.3.4",
+    "load-script-once": "^2.0.1",
     "nuxt": "^2.0.0",
+    "vue-fixed-header": "^3.2.14",
+    "vue-youtube": "^1.4.0",
+    "vuetify": "^2.2.18",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
