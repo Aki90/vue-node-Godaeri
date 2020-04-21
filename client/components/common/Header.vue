@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     userLogout() {
+      this.$cookies.remove('godaeri_auth');
       this.$store.commit('users/clearToken');
       alert('로그아웃 되었습니다.');
       this.$router.push({ path: '/' });

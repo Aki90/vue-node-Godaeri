@@ -1,11 +1,11 @@
-import { state } from '@/store/users';
-
+import { state } from '../../store/users';
 export function setInterceptors(instance) {
   // Add a request interceptor
   instance.interceptors.request.use(
     function(config) {
       // Do something before request is sent
       config.headers.Authorization = state.token;
+      console.log(config.headers.Authorization);
       return config;
     },
     function(error) {

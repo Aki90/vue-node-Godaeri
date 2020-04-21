@@ -1,13 +1,12 @@
 import { registerUser, loginUser } from '@/api/user';
-
 export const state = () => ({
-  token: '',
+  token: undefined,
 });
 
-// function 통해서 세션에 저장, 로그인 로그아웃 처리해줘야 한다.
 export const getters = {
+  // 로그인 확인
   isLogin(state) {
-    return state.token !== '';
+    return state.token !== undefined;
   },
 };
 
@@ -16,7 +15,7 @@ export const mutations = {
     state.token = token;
   },
   clearToken(state) {
-    state.token = '';
+    state.token = undefined;
   },
 };
 
@@ -30,7 +29,12 @@ export const actions = {
   // 로그인
   async LOGIN({ commit }, userData) {
     const { data } = await loginUser(userData);
-    alert(`${data.nickname} 님, 환영합니다 :)`);
     commit('setToken', data.token);
+    // COOKIE
+    this.$cookies.set('godaeri_auth', data.token, {
+      maxAge: 60 * 60 * 24 * 7,
+    });
+    alert(`${data.nickname} 님, 환영합니다 :)`);
   },
+  /* 로그아웃은 Header Component */
 };

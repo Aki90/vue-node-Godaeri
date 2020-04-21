@@ -10,6 +10,11 @@
         <p>{{ postItem.createdAt }}</p>
       </li>
     </ul>
+    <div>
+      <nuxt-link to="/posts/create"
+        ><i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i
+      ></nuxt-link>
+    </div>
   </main>
 </template>
 

@@ -21,7 +21,8 @@ module.exports = {
    ** Customize the progress bar color
    */
   loading: { color: '#3B8070' },
-  modules: ['bootstrap-vue/nuxt'],
+  modules: ['bootstrap-vue/nuxt', 'cookie-universal-nuxt'],
+  plugins: ['@/plugins/fontawesome.js'],
   build: {
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
