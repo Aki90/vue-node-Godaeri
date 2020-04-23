@@ -7,7 +7,10 @@ const dotenv = require('dotenv');
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const userRouter = require('./routes/user');
-const postRouter = require('./routes/posts');
+const postsRouter = require('./routes/posts');
+
+
+
 const app = express();
 
 dotenv.config();
@@ -19,7 +22,7 @@ passportConfig();
 // EXPRESS SETUP
 app.use(morgan('dev'));
 app.use(cors({
-origin: 'http://localhost:3000',
+origin: 'http://localhost:8080',
 credentials: true,
 }));
 
@@ -34,7 +37,7 @@ app.get('/', (req, res) => {
 
 // ROUTES
 app.use('/user', userRouter);
-app.use('/posts', postRouter);
+app.use('/posts', postsRouter);
 // app.use('/posts', postsRouter);
 // app.use('/hashtag', hashtagRouter);
 

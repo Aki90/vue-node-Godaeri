@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { User } = require('../models/User');
 
 // 토큰 발급
 exports.newToken = user => {
@@ -31,3 +32,4 @@ exports.verifyToken = (req, res, next) => {
     });
   }
 };
+
