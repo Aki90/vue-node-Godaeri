@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { registerUser, loginUser } from '@/api/user';
-import { getAuthFromCookie, saveAuthToCookie } from '@/utils/cookies';
+import {
+  saveAuthToCookie,
+  saveUserNickToCookie,
+  getAuthFromCookie,
+  saveUserNickFromCookie,
+} from '@/utils/cookies';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     token: getAuthFromCookie() || '',
+    nickname: saveUserNickFromCookie() || '',
   },
   getters: {
     isLogin(state) {
@@ -20,6 +26,12 @@ export default new Vuex.Store({
     },
     clearToken(state) {
       state.token = '';
+    },
+    setNickname(state, nickname) {
+      state.nickname = nickname;
+    },
+    clearNickname(state) {
+      state.nickname = '';
     },
   },
   actions: {
@@ -34,8 +46,10 @@ export default new Vuex.Store({
     async LOGIN({ commit }, userData) {
       const { data } = await loginUser(userData);
       commit('setToken', data.token);
+      commit('setNickname', data.nickname);
       // COOKIE
       saveAuthToCookie(data.token);
+      saveUserNickToCookie(data.nickname);
       alert(`${data.nickname} 님, 환영합니다 :)`);
     },
     // 로그아웃은 Header Component

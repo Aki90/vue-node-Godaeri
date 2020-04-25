@@ -5,6 +5,11 @@
         <div>
           <label for="email">id: </label>
           <input id="email" type="text" v-model="email" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isEmailValid && email">
+              이메일 주소를 입력해 주세요
+            </span>
+          </p>
         </div>
         <div>
           <label for="nickname">nickname: </label>
@@ -22,6 +27,7 @@
 
 <script>
 import { registerUser } from '@/api/user';
+import { validateEmail } from '@/utils/validation.js';
 
 export default {
   data() {
@@ -31,6 +37,11 @@ export default {
       nickname: '',
       password: '',
     };
+  },
+  computed: {
+    isEmailValid() {
+      return validateEmail(this.email);
+    },
   },
   methods: {
     async submitForm() {
@@ -43,12 +54,11 @@ export default {
         await this.$store.dispatch('SIGNUP', userData);
         this.$router.push({ name: 'Main' });
       } catch (error) {
-        console.error(error);
+        alert(error.response.data.message);
+        initForm();
       }
     },
     initForm() {
-      this.email = '';
-      this.nickname = '';
       this.password = '';
     },
   },

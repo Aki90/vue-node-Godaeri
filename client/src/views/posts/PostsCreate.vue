@@ -50,9 +50,9 @@ export default {
         const { data } = await createPost(postData);
         alert('입력이 완료되었습니다.');
         this.$router.push({ name: 'Posts' });
-        console.log(data);
       } catch (error) {
-        console.error(error);
+        alert(error.response.data.message);
+        this.$router.push({ path: '/login' });
       }
     },
   },

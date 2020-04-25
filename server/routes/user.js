@@ -31,6 +31,18 @@ router.post('/', async (req, res, next) => {
             });
         }
 
+        // 닉네임 중복 검사
+        const checkNick = await User.findOne({
+            where: {
+              nickname: req.body.nickname,
+            }
+        });
+        if (checkNick) {
+            return res.status(403).json({
+                message: '중복되는 닉네임입니다.'
+            });
+        }
+
         // 회원가입 완료
         const newUser = await User.create({
             email: req.body.email,
@@ -41,8 +53,7 @@ router.post('/', async (req, res, next) => {
         return res.status(201).json({ user: newUser });
 
     } catch (error) {
-        console.error(error);
-        next(error);
+        return res.status(500).json({ message: 'Server Signup Error', error });
     }
 });
 

@@ -1,16 +1,16 @@
-import { instance } from './index';
+import { instanceUser } from './index';
 
 // 회원정보
 export function getUser() {
-  return instance.get('/user');
+  return instanceUser.get('/');
 }
 
 // 회원가입 API
 export function registerUser(userData) {
-  return instance.post('/user', userData);
+  return instanceUser.post('/', userData);
 }
 
 // 로그인 API
 export function loginUser(userData) {
-  return instance.post('/user/login', userData);
+  return instanceUser.post('/login', userData);
 }

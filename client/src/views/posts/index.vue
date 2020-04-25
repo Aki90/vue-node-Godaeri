@@ -3,13 +3,13 @@
     <div v-if="isLoading">
       <LoadingSpinner />
     </div>
-    <ul>
-      <li v-for="postItem in postItems" :key="postItem.id">
-        <p>{{ postItem.title }}</p>
-        <p>{{ postItem.contents }}</p>
-        <p>{{ postItem.createdAt }}</p>
-        <p>{{ postItem.User.nickname }}</p>
-      </li>
+    <ul v-else>
+      <PostListItem
+        v-for="postItem in postItems"
+        :key="postItem.id"
+        :postItem="postItem"
+        @refresh="fetchData"
+      />
     </ul>
     <div>
       <router-link to="/posts/create"
@@ -21,7 +21,8 @@
 
 <script>
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-import { fetchPosts } from '@/api/posts';
+import { fetchPosts, deletePost } from '@/api/posts';
+import PostListItem from '@/components/posts/PostListItem';
 
 export default {
   data() {
@@ -32,10 +33,11 @@ export default {
   },
   components: {
     LoadingSpinner,
+    PostListItem,
   },
   methods: {
+    // POST 데이터 가져오기
     async fetchData() {
-      // POST 데이터 가져오기
       this.isLoading = true;
       const { data } = await fetchPosts();
       this.isLoading = false;
@@ -52,5 +54,8 @@ export default {
 /* test */
 #main {
   background-color: #ff0;
+}
+.fa-pen-square {
+  color: red; /* TEST */
 }
 </style>

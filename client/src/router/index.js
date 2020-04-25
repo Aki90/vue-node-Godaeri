@@ -19,17 +19,6 @@ const routes = [
     name: 'Menu',
     component: () => import('@/views/Menu.vue'),
   },
-  // POST
-  {
-    path: '/posts',
-    name: 'Posts',
-    component: () => import('@/views/posts/index.vue'),
-  },
-  {
-    path: '/posts/create',
-    name: 'PostsCreate',
-    component: () => import('@/views/posts/PostsCreate.vue'),
-  },
   {
     path: '/info',
     name: 'Info',
@@ -51,12 +40,36 @@ const routes = [
     name: 'NotFoundPage',
     component: () => import('@/views/error/NotFoundPage.vue'),
   },
+  // POST
+  {
+    path: '/posts',
+    name: 'Posts',
+    component: () => import('@/views/posts/index.vue'),
+  },
+  {
+    path: '/posts/create',
+    name: 'PostsCreate',
+    meta: { auth: true },
+    component: () => import('@/views/posts/PostsCreate.vue'),
+  },
+  {
+    path: '/post/:id',
+    meta: { auth: true },
+    component: () => import('@/views/posts/PostEdit.vue'),
+  },
 ];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    console.log('인증이 필요합니다.');
+  }
+  next();
 });
 
 export default router;
