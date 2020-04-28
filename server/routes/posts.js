@@ -10,7 +10,8 @@ router.get('/',async (req, res) => {
         include: [{
             model: db.User,
             attributes: ['id', 'nickname'],
-        }]
+        }],
+        order: [['createdAt', 'DESC']],
     });
 
     return res.status(200).json({

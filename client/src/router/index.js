@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store';
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,10 @@ const routes = [
     meta: { auth: true },
     component: () => import('@/views/posts/PostEdit.vue'),
   },
+  {
+    path: '/test',
+    component: () => import('@/components/posts/TestBoard.vue'),
+  },
 ];
 
 const router = new VueRouter({
@@ -66,8 +71,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.auth) {
-    console.log('인증이 필요합니다.');
+  if (to.meta.auth && !store.getters.isLogin) {
+    alert('로그인 후 확인하실 수 있습니다.');
+    next({ path: '/login' });
+    return false;
   }
   next();
 });

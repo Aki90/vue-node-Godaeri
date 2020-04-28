@@ -1,31 +1,49 @@
 <template>
-  <header id="header" class="text-center">
-    <router-link to="/">
-      <h1 class="logo">
-        <img src="@/assets/logo.jpeg" alt="로고" />
-      </h1>
-    </router-link>
-    <!-- //logo -->
-    <nav class="menu">
-      <ul class="spot">
-        <li><router-link to="/introduce">소개</router-link></li>
-        <li><router-link to="/menu">메뉴</router-link></li>
-        <li><router-link to="/posts">커뮤니티</router-link></li>
-        <li><router-link to="/info">이용안내</router-link></li>
-        <template v-if="isUserLogin">
-          <li><a href="javascript:;" @click="userLogout">로그아웃</a></li>
-        </template>
-        <template v-else>
-          <li><router-link to="/login">로그인</router-link></li>
-        </template>
-      </ul>
-    </nav>
-    <!-- //menu -->
+  <header id="header">
+    <b-navbar toggleable="lg" fixed="top">
+      <b-navbar-brand>
+        <router-link to="/">
+          <h1 class="logo">
+            <img src="@/assets/logo.jpeg" alt="로고" />
+          </h1>
+        </router-link>
+      </b-navbar-brand>
+
+      <b-navbar-toggle target="nav_collapse" />
+
+      <b-collapse is-nav id="nav_collapse">
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item>
+            <router-link to="/introduce">소개</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/menu">메뉴</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/posts">커뮤니티</router-link>
+          </b-nav-item>
+          <b-nav-item>
+            <router-link to="/info">이용안내</router-link>
+          </b-nav-item>
+          <template v-if="isUserLogin">
+            <b-nav-item>
+              <a href="javascript:;" @click="userLogout">로그아웃</a>
+            </b-nav-item>
+          </template>
+          <template v-else>
+            <b-nav-item>
+              <router-link to="/login">로그인</router-link>
+            </b-nav-item>
+          </template>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <div class="background"></div>
   </header>
 </template>
 
 <script>
-import { deleteCookie } from '../../utils/cookies';
+import { deleteCookie } from '@/utils/cookies';
 export default {
   computed: {
     isUserLogin() {
@@ -36,6 +54,7 @@ export default {
     userLogout() {
       this.$store.commit('clearToken');
       deleteCookie('godaeri_auth');
+      deleteCookie('user_nick');
       alert('로그아웃 되었습니다.');
       if (this.$route.path !== '/') this.$router.push({ path: '/' });
     },
@@ -49,4 +68,25 @@ export default {
   scoped
 ></style>
 -->
-<style></style>
+<style scoped>
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #fff;
+}
+.navbar-brand {
+  padding: 0;
+}
+.logo img {
+  width: 80px;
+}
+.nav-link a {
+  text-decoration: none;
+  color: rgb(44, 44, 44);
+}
+.background {
+  width: 100%;
+  height: 88px;
+  background-color: #fff;
+}
+</style>

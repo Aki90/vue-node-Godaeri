@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-center">
     <b-table
       striped
       hover
@@ -19,22 +19,27 @@
 </template>
 
 <script>
-import { fetchPosts, deletePost } from '@/api/posts';
-
+import data from '@/data';
+let items = data.Content.sort((a, b) => {
+  return b.content_id - a.content_id;
+});
+items = items.map(contentItem => {
+  return {
+    ...contentItem,
+    user_name: data.User.filter(
+      userItem => userItem.user_id === contentItem.user_id,
+    )[0].name,
+  };
+});
 export default {
-  props: {
-    postItems: {
-      type: Array,
-      required: true,
-    },
-  },
+  name: 'Board',
   data() {
     return {
       currentPage: 1,
       perPage: 5,
       fields: [
         {
-          key: 'id',
+          key: 'content_id',
           label: '글번호',
         },
         {
@@ -42,15 +47,15 @@ export default {
           label: '제목',
         },
         {
-          key: 'createdAt',
+          key: 'created_at',
           label: '등록일',
         },
         {
-          key: 'User.nickname',
+          key: 'user_name',
           label: '글쓴이',
         },
       ],
-      items: this.postItems,
+      items: items,
     };
   },
   computed: {
@@ -60,20 +65,9 @@ export default {
   },
   methods: {
     rowClick(item, index, event) {
-      console.log('item.id는', item.id);
+      console.log(index);
       //   this.$router.push({ path: `/post/${content_id}` });
     },
-    // POST 수정 페이지로
-    routeEditPage() {
-      const postId = this.postItems.id;
-      this.$router.push(`/post/${postId}`);
-    },
-  },
-  created() {
-    console.log('test', this.postItems[0].createdAt);
-    console.log('items', this.items);
   },
 };
 </script>
-
-<style></style>
