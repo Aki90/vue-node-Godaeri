@@ -36,11 +36,7 @@ const routes = [
     name: 'Login',
     component: () => import('@/views/Login.vue'),
   },
-  {
-    path: '*',
-    name: 'NotFoundPage',
-    component: () => import('@/views/error/NotFoundPage.vue'),
-  },
+
   // POST
   {
     path: '/posts',
@@ -56,11 +52,21 @@ const routes = [
   {
     path: '/post/:id',
     meta: { auth: true },
+    component: () => import('@/views/posts/PostList.vue'),
+  },
+  {
+    path: '/post/:id/edit',
+    meta: { auth: true },
     component: () => import('@/views/posts/PostEdit.vue'),
   },
   {
     path: '/test',
-    component: () => import('@/components/posts/TestBoard.vue'),
+    component: () => import('@/components/Test.vue'),
+  },
+  {
+    path: '*',
+    name: 'NotFoundPage',
+    component: () => import('@/views/error/NotFoundPage.vue'),
   },
 ];
 

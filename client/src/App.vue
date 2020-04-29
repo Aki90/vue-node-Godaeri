@@ -17,5 +17,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+h2 span {
+  font-size: 1.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #000;
+}
+</style>
 <!-- resetCSS -->

@@ -4,20 +4,15 @@
       <LoadingSpinner />
     </div>
     <template v-else>
-      <PostListItem :postItems="postItems" @refresh="fetchData" />
+      <PostsListItem :postItems="postItems" @refresh="fetchData" />
     </template>
-    <div>
-      <router-link to="/posts/create">
-        <i class="fa fa-plus-circle fa-4x" aria-hidden="true"></i>
-      </router-link>
-    </div>
   </main>
 </template>
 
 <script>
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-import { fetchPosts, deletePost } from '@/api/posts';
-import PostListItem from '@/components/posts/PostListItem';
+import { fetchPosts } from '@/api/posts';
+import PostsListItem from '@/components/posts/PostsListItem';
 
 export default {
   data() {
@@ -28,7 +23,7 @@ export default {
   },
   components: {
     LoadingSpinner,
-    PostListItem,
+    PostsListItem,
   },
   methods: {
     // POST 데이터 가져오기
@@ -49,7 +44,7 @@ export default {
         const minutes = date.getMinutes();
         data.posts[
           index
-        ].createdAt = `${year}.${month}.${day} ${hours}:${minutes}`;
+        ].createdAt = `${year}-${month}-${day} ${hours}:${minutes}`;
       }
 
       this.isLoading = false;
@@ -62,12 +57,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* test
-#main {
-  background-color: #ff0;
-} */
-.fa-pen-square {
-  color: red; /* TEST */
-}
-</style>
+<style scoped></style>

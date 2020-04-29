@@ -1,31 +1,59 @@
 <template>
-  <div class="contents">
-    <div class="form-wrapper form-wrapper-sm">
-      <form @submit.prevent="submitForm" class="form">
-        <div>
-          <label for="email">id:</label>
-          <input id="email" type="text" v-model="email" />
-          <p class="validation-text">
-            <span class="warning" v-if="!isEmailValid && email">
-              Please enter an email address
-            </span>
-          </p>
-        </div>
-        <div>
-          <label for="password">pw:</label>
-          <input id="password" type="text" v-model="password" />
-        </div>
-        <button
-          :disabled="!isEmailValid || !password"
-          type="submit"
-          class="btn"
-          :class="!isEmailValid || !password ? 'disabled' : null"
-        >
-          로그인
-        </button>
-      </form>
-    </div>
-  </div>
+  <b-container>
+    <b-row align-h="center" class="mt-5">
+      <b-col cols="5">
+        <b-card class="p-3">
+          <h2 class="mb-4"><span>로그인</span></h2>
+          <b-form @submit.prevent="submitForm">
+            <b-form-group id="emailForm" label="이메일" label-for="emailForm">
+              <b-form-input
+                id="emailForm"
+                type="email"
+                v-model="email"
+                required
+                placeholder="이메일 주소를 입력해주세요"
+              >
+              </b-form-input>
+              <p class="validation-text" v-if="!isEmailValid && email">
+                <span class="warning">
+                  이메일형식을 맞춰주세요!
+                </span>
+              </p>
+            </b-form-group>
+            <b-form-group
+              id="passwordForm"
+              label="비밀번호"
+              label-for="passwordForm"
+            >
+              <b-form-input
+                id="passwordForm"
+                type="password"
+                v-model="password"
+                required
+                placeholder="비밀번호를 입력해주세요"
+              >
+              </b-form-input>
+            </b-form-group>
+
+            <div class="justify-content-between">
+              <b-button
+                :disabled="!isEmailValid || !password"
+                type="submit"
+                :class="!isEmailValid || !password ? 'disabled' : null"
+                variant="primary"
+              >
+                로그인
+              </b-button>
+            </div>
+          </b-form>
+          <div class="register">
+            <span>아직 회원이 아니시라면? </span>
+            <router-link to="/signup">회원가입</router-link>
+          </div>
+        </b-card>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -55,21 +83,27 @@ export default {
         // console.log(data);
         this.$router.push('/');
       } catch (error) {
-        console.log(error); // TODO:
+        alert(error.response.data.message);
+        initForm();
       } finally {
         this.initForm();
       }
     },
     initForm() {
-      this.email = '';
       this.password = '';
     },
   },
 };
 </script>
 
-<style>
-.btn {
-  color: white;
+<style scoped>
+.validation-text {
+  margin-top: 0.5rem;
+}
+.validation-text .warning {
+  color: red;
+}
+.register {
+  margin-top: 1rem;
 }
 </style>

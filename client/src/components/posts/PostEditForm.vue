@@ -1,26 +1,52 @@
 <template>
-  <div>
-    <form class="form" @submit.prevent="submitForm">
-      <div>
-        <label for="title">Title:</label>
-        <input id="title" type="text" v-model="title" />
+  <b-container>
+    <b-form @submit.prevent="submitForm">
+      <!-- title -->
+      <div class="title text-left">
+        <p>게시물 번호 · {{ postId }}</p>
+        <p>{{ nickname }} · {{ createdAt | formatDate }}</p>
+        <b-form-group id="title" label="" label-for="title">
+          <b-form-input
+            id="title"
+            type="text"
+            v-model="title"
+            required
+            placeholder="제목을 입력해주세요"
+          >
+          </b-form-input>
+        </b-form-group>
       </div>
-      <div>
-        <label for="contents">Contents:</label>
-        <textarea id="contents" type="text" rows="5" v-model="contents" />
-      </div>
-      <p v-if="!isContentsValid" class="overLength">
-        내용은 200자 이하까지만 가능합니다.
-      </p>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        :disabled="!isContentsValid"
-      >
-        수정
-      </button>
-    </form>
-  </div>
+      <b-form-group>
+        <!-- //title -->
+        <!-- contents -->
+        <b-form-textarea
+          id="textarea-no-resize"
+          no-resize
+          rows="3"
+          v-model="contents"
+          placeholder="내용을 입력해주세요"
+          required
+        >
+        </b-form-textarea>
+        <p v-if="!isContentsValid" class="overLength">
+          내용은 200자 이하까지만 가능합니다.
+        </p>
+        <div class="inputButton text-right">
+          <button
+            type="submit"
+            class="btn btn-info"
+            :disabled="!title || !contents || !isContentsValid"
+          >
+            수정
+          </button>
+          <button type="submit" class="btn btn-info" @click="returnRoute">
+            뒤로가기
+          </button>
+        </div>
+      </b-form-group>
+      <!-- //contents -->
+    </b-form>
+  </b-container>
 </template>
 
 <script>
@@ -29,8 +55,11 @@ import { fetchPost, editPost } from '@/api/posts';
 export default {
   data() {
     return {
+      postId: '',
+      nickname: '',
       title: '',
       contents: '',
+      createdAt: '',
     };
   },
   computed: {
@@ -39,6 +68,7 @@ export default {
     },
   },
   methods: {
+    // POST 수정
     async submitForm() {
       const postId = this.$route.params.id;
       const postData = {
@@ -53,21 +83,52 @@ export default {
         alert(error.response.data.message);
       }
     },
+    // 뒤로가기
+    returnRoute() {
+      const postId = this.$route.params.id;
+      this.$router.replace({ path: `/post/${postId}` });
+    },
   },
   async created() {
     const postId = this.$route.params.id;
     const { data } = await fetchPost(postId);
+
+    this.postId = data.post.id;
+    this.nickname = data.post.User.nickname;
     this.title = data.post.title;
     this.contents = data.post.contents;
+    this.createdAt = data.post.createdAt;
   },
 };
 </script>
 
-<style>
-.form-wrapper .form {
-  width: 100%;
+<style scoped>
+.container {
+  background-color: #fff;
+  padding: 2rem;
 }
-.btn {
-  color: #fff;
+#title {
+  margin-top: 1rem;
+}
+.title {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #000;
+}
+.title h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.title p {
+  margin: 0;
+}
+#textarea-no-resize {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.overLength {
+  color: red;
+}
+.inputButton button {
+  margin-right: 0.5rem;
 }
 </style>

@@ -16,4 +16,10 @@ export default {};
   scoped
 ></style>
 -->
-<style></style>
+<style scoped>
+#footer {
+  /* margin-top: 2rem; */
+  padding-top: 1rem;
+  border-top: 1px solid #000;
+}
+</style>

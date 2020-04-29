@@ -20,7 +20,7 @@
             <router-link to="/menu">메뉴</router-link>
           </b-nav-item>
           <b-nav-item>
-            <router-link to="/posts">커뮤니티</router-link>
+            <router-link to="/posts">방명록</router-link>
           </b-nav-item>
           <b-nav-item>
             <router-link to="/info">이용안내</router-link>

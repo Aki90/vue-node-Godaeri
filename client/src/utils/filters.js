@@ -8,5 +8,5 @@ export function formatDate(value) {
   let hours = date.getHours();
   hours = hours > 9 ? hours : `0${hours}`;
   const minutes = date.getMinutes();
-  return `${year}.${month}.${day} ${hours}:${minutes}`;
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
 }

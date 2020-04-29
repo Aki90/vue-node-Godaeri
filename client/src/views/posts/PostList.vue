@@ -1,14 +1,14 @@
 <template>
   <main class="text-center">
-    <PostEditForm />
+    <PostItem />
   </main>
 </template>
 
 <script>
-import PostEditForm from '@/components/posts/PostEditForm.vue';
+import PostItem from '@/components/posts/PostItem.vue';
 export default {
   components: {
-    PostEditForm,
+    PostItem,
   },
 };
 </script>

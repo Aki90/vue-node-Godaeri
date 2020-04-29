@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <b-container>
+    <h2 class="text-left"><span>방명록</span></h2>
     <b-table
       striped
       hover
@@ -8,18 +9,26 @@
       :items="items"
       :fields="fields"
       @row-clicked="rowClick"
-    ></b-table>
+      class="mt-3"
+    >
+    </b-table>
     <b-pagination
       v-model="currentPage"
       :total-rows="rows"
       :per-page="perPage"
       align="center"
-    ></b-pagination>
-  </div>
+    >
+    </b-pagination>
+    <div class="inputButton text-right">
+      <button type="submit" class=" btn btn-info" @click="submitCreate">
+        글쓰기
+      </button>
+    </div>
+  </b-container>
 </template>
 
 <script>
-import { fetchPosts, deletePost } from '@/api/posts';
+import { fetchPosts } from '@/api/posts';
 
 export default {
   props: {
@@ -35,19 +44,19 @@ export default {
       fields: [
         {
           key: 'id',
-          label: '글번호',
+          label: '번호',
         },
         {
           key: 'title',
           label: '제목',
         },
         {
-          key: 'createdAt',
-          label: '등록일',
+          key: 'User.nickname',
+          label: '작성자',
         },
         {
-          key: 'User.nickname',
-          label: '글쓴이',
+          key: 'createdAt',
+          label: '작성일',
         },
       ],
       items: this.postItems,
@@ -60,20 +69,21 @@ export default {
   },
   methods: {
     rowClick(item, index, event) {
-      console.log('item.id는', item.id);
-      //   this.$router.push({ path: `/post/${content_id}` });
+      this.$router.push({ path: `/post/${item.id}` });
     },
-    // POST 수정 페이지로
-    routeEditPage() {
-      const postId = this.postItems.id;
-      this.$router.push(`/post/${postId}`);
+    // 글쓰기
+    submitCreate() {
+      this.$router.push('/posts/create');
     },
-  },
-  created() {
-    console.log('test', this.postItems[0].createdAt);
-    console.log('items', this.items);
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  padding: 2rem;
+}
+.table {
+  border: 1px solid #dee2e6;
+}
+</style>

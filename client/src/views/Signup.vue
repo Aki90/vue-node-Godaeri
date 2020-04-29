@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <h1 class="page-header">회원 가입 페이지</h1>
+  <main class="text-center">
     <SignupForm />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -14,4 +13,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+main {
+  padding: 2rem 0 6rem;
+  background: #eef1f4 !important;
+}
+</style>
