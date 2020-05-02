@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.use(BootstrapVue);
 
+// Filter
 Vue.filter('formatDate', formatDate);
 Vue.config.productionTip = false;
 

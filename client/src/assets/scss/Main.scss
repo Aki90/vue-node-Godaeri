@@ -1,0 +1,39 @@
+p {
+    margin-bottom: 0.5rem;
+  }
+  
+.story {
+  margin-top: 3rem;
+
+  .warp_story {
+    a {
+      color: #000;
+    }
+  } //.warp_story
+}
+
+.sns {
+  margin-top: 3rem;
+
+  .tag {
+    color: #999;
+
+     &:after {
+      content: '';
+      display: block;
+      width: 3rem;
+      height: 1px;
+      margin: 2rem auto;
+      background: #000;
+    }
+  }
+
+  .icon {
+    margin: 1rem 0 2rem;
+
+    a {
+      margin: 0 0.5rem;
+      color: #000;
+    }
+  }
+}

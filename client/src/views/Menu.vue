@@ -1,6 +1,5 @@
 <template>
   <main class="text-center">
-    <h2 class="title">메뉴</h2>
     <MenuList />
   </main>
 </template>
@@ -14,6 +13,3 @@ export default {
   },
 };
 </script>
-
-<!-- <style src="@/assets/scss/menu.scss" lang="scss" scoped></style> -->
-<style></style>

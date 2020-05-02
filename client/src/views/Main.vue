@@ -4,13 +4,15 @@
       <Slider />
     </section>
     <!-- //banner -->
+    <!-- story -->
     <section class="story">
       <div class="warp_story">
         <p><strong>고대리 이야기</strong></p>
-        <router-link to="/introduce">고대리꼬치를 소개합니다</router-link>
+        <router-link to="/introduce">고대리꼬치를 소개합니다 !</router-link>
       </div>
     </section>
     <!-- //story -->
+    <!-- sns -->
     <section class="sns">
       <div class="warp_sns">
         <p><strong>고대리 SNS</strong></p>
@@ -39,4 +41,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" src="@/assets/scss/Main.scss" scoped></style>

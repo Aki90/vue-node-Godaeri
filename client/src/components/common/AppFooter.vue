@@ -6,17 +6,7 @@
   </footer>
 </template>
 
-<script>
-export default {};
-</script>
-
-<!-- <style
-  src="@/assets/scss/components/common/footer.scss"
-  lang="scss"
-  scoped
-></style>
--->
-<style scoped>
+<style lang="scss" scoped>
 #footer {
   /* margin-top: 2rem; */
   padding-top: 1rem;

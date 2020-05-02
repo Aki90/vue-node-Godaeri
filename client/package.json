@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "godaeri",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,8 +17,11 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.12.0",
     "core-js": "^3.6.4",
+    "hooper": "^0.3.4",
+    "node-sass": "^4.14.0",
+    "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
-    "vue-fixed-header": "^3.2.14",
+    "vue-meta": "^2.3.3",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
   },

@@ -9,8 +9,6 @@ const passportConfig = require('./passport');
 const userRouter = require('./routes/user');
 const postsRouter = require('./routes/posts');
 
-
-
 const app = express();
 
 dotenv.config();
@@ -29,17 +27,14 @@ credentials: true,
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
-// app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.status(200).json({ test: 'test' });
+  res.status(200).json({ test: 'API Server' });
 });
 
 // ROUTES
 app.use('/user', userRouter);
 app.use('/posts', postsRouter);
-// app.use('/posts', postsRouter);
-// app.use('/hashtag', hashtagRouter);
 
 
 // START

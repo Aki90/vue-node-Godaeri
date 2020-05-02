@@ -20,7 +20,7 @@
     >
     </b-pagination>
     <div class="inputButton text-right">
-      <button type="submit" class=" btn btn-info" @click="submitCreate">
+      <button type="submit" class=" btn btn-info" @click="createRoute">
         글쓰기
       </button>
     </div>
@@ -72,14 +72,14 @@ export default {
       this.$router.push({ path: `/post/${item.id}` });
     },
     // 글쓰기
-    submitCreate() {
+    createRoute() {
       this.$router.push('/posts/create');
     },
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   padding: 2rem;
 }

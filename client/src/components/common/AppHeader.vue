@@ -62,31 +62,8 @@ export default {
 };
 </script>
 
-<!-- <style
-  src="@/assets/scss/components/common/header.scss"
+<style
   lang="scss"
+  src="@/assets/scss/components/common/AppHeader.scss"
   scoped
 ></style>
--->
-<style scoped>
-.navbar {
-  padding-top: 0;
-  padding-bottom: 0;
-  background-color: #fff;
-}
-.navbar-brand {
-  padding: 0;
-}
-.logo img {
-  width: 80px;
-}
-.nav-link a {
-  text-decoration: none;
-  color: rgb(44, 44, 44);
-}
-.background {
-  width: 100%;
-  height: 88px;
-  background-color: #fff;
-}
-</style>

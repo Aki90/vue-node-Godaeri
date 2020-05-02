@@ -18,7 +18,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 main {
   padding: 2rem 0 6rem;
   background: #eef1f4 !important;

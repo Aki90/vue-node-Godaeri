@@ -96,12 +96,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .validation-text {
   margin-top: 0.5rem;
-}
-.validation-text .warning {
-  color: red;
+
+  .warning {
+    color: red;
+  }
 }
 .register {
   margin-top: 1rem;

@@ -102,33 +102,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  background-color: #fff;
-  padding: 2rem;
-}
-#title {
-  margin-top: 1rem;
-}
-.title {
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #000;
-}
-.title h3 {
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-.title p {
-  margin: 0;
-}
-#textarea-no-resize {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.overLength {
-  color: red;
-}
-.inputButton button {
-  margin-right: 0.5rem;
-}
+<style lang="scss" scoped>
+@import '@/assets/scss/components/posts/PostEditForm.scss';
 </style>

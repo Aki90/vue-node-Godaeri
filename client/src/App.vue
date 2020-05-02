@@ -10,6 +10,9 @@
 import AppHeader from '@/components/common/AppHeader.vue';
 import AppFooter from '@/components/common/AppFooter.vue';
 export default {
+  metaInfo: {
+    title: '고대리꼬치',
+  },
   components: {
     AppHeader,
     AppFooter,
@@ -17,11 +20,6 @@ export default {
 };
 </script>
 
-<style>
-h2 span {
-  font-size: 1.5rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 2px solid #000;
-}
+<style lang="scss">
+@import '@/assets/scss/App.scss';
 </style>
-<!-- resetCSS -->

@@ -1,7 +1,7 @@
 <template>
   <main class="text-center">
+    <h2><span>혼밥? 대세는 혼술!</span></h2>
     <section class="text">
-      <h2 class="title">혼밥? 대세는 혼술!</h2>
       <p>
         고대리 꼬치에서는 전국에서 유일하게 된장소스를 사용하여 수제꼬치를
         만들고 있습니다.
@@ -29,5 +29,6 @@ export default {
 };
 </script>
 
-<!-- <style src="@/assets/scss/introduce.scss" lang="scss" scoped></style> -->
-<style></style>
+<style lang="scss" scoped>
+@import '@/assets/scss/Introduce.scss';
+</style>

@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueMeta from 'vue-meta';
 import store from '@/store';
 
 Vue.use(VueRouter);
+Vue.use(VueMeta);
 
 const routes = [
   {
@@ -58,10 +60,6 @@ const routes = [
     path: '/post/:id/edit',
     meta: { auth: true },
     component: () => import('@/views/posts/PostEdit.vue'),
-  },
-  {
-    path: '/test',
-    component: () => import('@/components/Test.vue'),
   },
   {
     path: '*',

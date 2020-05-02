@@ -1,0 +1,31 @@
+.info {
+  margin: 3rem 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map {
+  float: left;
+  width: 50%;
+
+  #staticMap {
+    width: 600px;
+    height: 350px;
+    margin: 0 auto;
+  }
+}
+
+.address {
+  float: left;
+  width: 50%;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  a {
+    color: #000;
+  }
+}
